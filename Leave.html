@@ -54,39 +54,44 @@
                 <div class="text-center text-white">ค้นหารายชื่อ..</div>
             </div>
             <div class="flex justify-center items-center">
-                <div class="bg-slate-800 rounded-lg shadow-xl p-6">
+                <div class="bg-slate-800 rounded shadow-xl p-6">
                     <div class="flex items-center mb-4">
-                        <img class="mx-auto w-24 h-24 object-cover rounded-lg mr-4" id="columnEData"
-                             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
-                        <div>
+                        <img class="mx-auto w-24 h-24 object-cover rounded mr-4" id="columnEData"
+                             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile Picture">
+                        <div class="flex-1">
+                            <label for="columnBData" class="block text-sm text-white mb-1">ชื่อ:</label>
                             <input type="text"
-                                   class="input-field bg-slate-50 text-white text-md font-bold bg-opacity-0 "
+                                   class="input-field bg-slate-50 text-white text-md font-bold bg-opacity-0 rounded mb-2 w-full"
                                    id="columnBData" placeholder="ชื่อ" name="columnBData" readonly>
-                            <input type="text" class="input-field text-white text-md bg-white bg-opacity-0 "
+                            
+                            <label for="columnCData" class="block text-sm text-white mb-1">รหัสพนักงาน:</label>
+                            <input type="text" class="input-field text-white text-md bg-white bg-opacity-0 rounded mb-2 w-full"
                                    id="columnCData" placeholder="รหัสพนักงาน" name="columnCData" readonly>
-                            <input type="text" class="input-field text-white text-md bg-white bg-opacity-0 "
+                            
+                            <label for="columnDData" class="block text-sm text-white mb-1">ตำแหน่ง:</label>
+                            <input type="text" class="input-field text-white text-md bg-white bg-opacity-0 rounded w-full"
                                    id="columnDData" placeholder="ตำแหน่ง" name="columnDData" readonly>
                         </div>
                     </div>
 
-                    <div class="pt-4 border rounded-lg">
+                    <div class="pt-4 border rounded">
                         <div class="flex justify-between">
                             <div>
-                                <h1 class="font-light text-white text-center text-sm">ลาพักร้อน</h1>
+                                <h1 class="font-light text-white text-center text-sm mb-1">ลาพักร้อน</h1>
                                 <input type="text"
-                                       class="input-field text-md bg-white text-white text-bold text-center bg-opacity-0 py-1 w-full"
+                                       class="input-field text-md bg-white text-white text-bold text-center bg-opacity-0 py-1 w-full rounded"
                                        id="columnGData" placeholder="0" name="columnGData" readonly>
                             </div>
                             <div>
-                                <h1 class="font-light text-white text-center text-sm">ลากิจ</h1>
+                                <h1 class="font-light text-white text-center text-sm mb-1">ลากิจ</h1>
                                 <input type="text"
-                                       class="input-field text-md bg-white text-white text-bold text-center bg-opacity-0 py-1 w-full"
+                                       class="input-field text-md bg-white text-white text-bold text-center bg-opacity-0 py-1 w-full rounded"
                                        id="columnHData" placeholder="0" name="columnHData" readonly>
                             </div>
                             <div>
-                                <h1 class="font-light text-white text-center text-sm">ลาป่วย</h1>
+                                <h1 class="font-light text-white text-center text-sm mb-1">ลาป่วย</h1>
                                 <input type="text"
-                                       class="input-field text-md bg-white text-white text-bold text-center bg-opacity-0 py-1 w-full"
+                                       class="input-field text-md bg-white text-white text-bold text-center bg-opacity-0 py-1 w-full rounded"
                                        id="columnIData" placeholder="0" name="columnIData" readonly>
                             </div>
                         </div>
@@ -98,37 +103,58 @@
         </div>
         <div class="max-w-md mx-auto py-4">
             <form>
-                <div class="bg-white relative p-10 shadow-xl rounded-lg w-6/6 mx-auto">
-                    <div class="w-32 mb-5">
-                        <select type="text" id="typeId" name="typeId" class="w-full p-2 rounded-lg">
+                <div class="bg-white relative p-10 shadow-xl rounded w-full mx-auto">
+                    <!-- เลือกประเภทการลา -->
+                    <div class="w-full mb-5">
+                        <label for="typeId" class="block text-sm mb-1">ประเภทการลา:</label>
+                        <select id="typeId" name="typeId" class="w-full p-2 rounded">
                             <option value="ลาพักร้อน">ลาพักร้อน</option>
                             <option value="ลาป่วย">ลาป่วย</option>
                             <option value="ลากิจ">ลากิจ</option>
                             <option value="อื่นๆ">อื่นๆ</option>
                         </select>
                     </div>
+                    
+                    <!-- วันที่เริ่มต้นและสิ้นสุด -->
                     <div class="mt-4 flex justify-between mb-5">
-                        <input type="date" id="startDateId" name="startDateId" class="w-1/2 mr-2 p-2 rounded-lg">
-                        <input type="date" id="endDateId" name="endDateId" class="w-1/2 ml-2 p-2 rounded-lg">
+                        <div class="w-1/2 mr-2">
+                            <label for="startDateId" class="block text-sm mb-1">วันที่เริ่มต้น:</label>
+                            <input type="date" id="startDateId" name="startDateId" class="w-full p-2 rounded">
+                        </div>
+                        <div class="w-1/2 ml-2">
+                            <label for="endDateId" class="block text-sm mb-1">วันที่สิ้นสุด:</label>
+                            <input type="date" id="endDateId" name="endDateId" class="w-full p-2 rounded">
+                        </div>
                     </div>
+                    
+                    <!-- หัวข้อเรื่อง -->
                     <div class="mt-6 mb-5">
+                        <label for="titleId" class="block text-sm mb-1">หัวข้อเรื่อง:</label>
                         <input type="text" id="titleId" name="titleId" placeholder="หัวข้อเรื่อง"
-                               class="w-full p-2 border rounded-lg">
+                               class="w-full p-2 border rounded">
                     </div>
+                    
+                    <!-- รายละเอียด -->
                     <div class="mt-4 mb-5">
+                        <label for="detailId" class="block text-sm mb-1">รายละเอียด:</label>
                         <textarea id="detailId" name="detailId" placeholder="รายละเอียด"
-                                  class="w-full p-2 border rounded-lg"></textarea>
+                                  class="w-full p-2 border rounded"></textarea>
                     </div>
-                    <div class="text-center bg-slate-100 rounded-lg my-5 p-4">
-                        <label for="file" class="cursor-pointer justify-between items-center"> อัพโหลดเอกสาร
+                    
+                    <!-- อัพโหลดเอกสาร -->
+                    <div class="text-center bg-slate-100 rounded my-5 p-4">
+                        <label for="file" class="cursor-pointer flex justify-center items-center space-x-2">
+                            <span>อัพโหลดเอกสาร</span>
                             <input type="file" id="file" name="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
                                    class="hidden">
-                            <div id="fileNameDisplay" class="text-slate-800 text-xs text-center mt-1">ยังไม่ได้เลือกไฟล์</div>
                         </label>
+                        <div id="fileNameDisplay" class="text-slate-800 text-xs text-center mt-1">ยังไม่ได้เลือกไฟล์</div>
                         <div class="mx-auto text-slate-800 text-xs text-center mt-1">รูปแบบที่รองรับ jpg jpeg png pdf doc docx</div>
                     </div>
+                    
+                    <!-- ปุ่มบันทึกข้อมูล -->
                     <button type="button" id="submitBtn"
-                            class="bg-slate-800 text-center w-full text-white py-4 px-4 rounded-lg hover:bg-slate-600">บันทึกข้อมูล</button>
+                            class="bg-slate-800 text-center w-full text-white py-4 px-4 rounded hover:bg-slate-600">บันทึกข้อมูล</button>
                 </div>
             </form>
         </div>
@@ -179,6 +205,9 @@
             try {
                 const response = await fetch(`${WEB_MEMBER_APP_URL}`, {
                     method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({ action: 'fetchData', userId: userId })
                 });
                 const data = await response.json();
@@ -211,7 +240,7 @@
         // ฟังก์ชันสำหรับแสดง/ซ่อนการโหลดข้อมูล
         function showLoading(isLoading) {
             const overlay = document.getElementById('loadingOverlay');
-            const inputs = document.querySelectorAll('.input-field');
+            const inputs = document.querySelectorAll('.input-field, select, textarea, button');
             if (isLoading) {
                 overlay.style.display = 'flex';
                 inputs.forEach(input => input.disabled = true);
@@ -281,7 +310,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Validation Error',
-                    text: 'Please fill in all required fields.',
+                    text: 'กรุณากรอกข้อมูลให้ครบทุกช่อง.',
                 });
                 return;
             }
@@ -325,6 +354,9 @@
 
                     let response = await fetch(url, {
                         method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
                         body: JSON.stringify(obj)
                     });
 
@@ -339,6 +371,7 @@
                         if (result.isConfirmed) {
                             // Reset form
                             document.querySelector('form').reset();
+                            fileNameDisplay.textContent = 'ยังไม่ได้เลือกไฟล์';
                             await sendFlexMessage(obj); // ส่งข้อความ Flex Message หลังจากการส่งข้อมูล
                         }
                     });
@@ -347,7 +380,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'An error occurred while submitting data.',
+                        text: 'เกิดข้อผิดพลาดในการส่งข้อมูล.',
                     });
 
                     console.error(error);
@@ -355,7 +388,7 @@
                     submitBtn.disabled = false;
                 }
             } else {
-                Swal.fire('Submission Canceled', 'Your data has not been submitted.', 'info');
+                Swal.fire('Submission Canceled', 'ข้อมูลของคุณยังไม่ได้ถูกส่ง.', 'info');
             }
         });
 
