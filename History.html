@@ -27,29 +27,33 @@
             <input type="hidden" id="displayName" name="displayName">
 
             <!-- ส่วนสำหรับแสดงข้อมูลหลัก -->
-            <div id="main-info" class="mb-4">
-                <div class="mb-2"><strong>ชื่อ:</strong> <span id="name-info" class="font-medium text-md"></span></div>
-                <div><strong>รหัสพนักงาน:</strong> <span id="employee-id-info" class="font-medium text-md"></span></div>
+            <div id="main-info" class="mb-4 text-sm">
+                <div class="mb-2"><strong>ชื่อ:</strong> <span id="name-info" class="font-medium"></span></div>
+                <div><strong>รหัสพนักงาน:</strong> <span id="employee-id-info" class="font-medium"></span></div>
             </div>
 
-            <!-- ตารางแสดงข้อมูลการบันทึก -->
-            <table class="overflow-hidden w-full rounded-lg border border-slate-200 shadow-sm">
-                <thead>
-                    <tr class="bg-slate-800 text-slate-100 shadow-md text-left">
-                        <th class="py-2 text-md px-4">สถานะ</th>
-                        <th class="py-2 text-md px-4">หมายเหตุ</th>
-                        <th class="py-2 text-md px-4">วันที่</th>
-                        <th class="py-2 text-md px-4">เวลา</th>
-                    </tr>
-                </thead>
-                <tbody id="data-table" class="text-sm text-slate-600">
-                    <!-- ข้อมูลการบันทึกจะถูกแสดงในส่วนนี้ -->
-                </tbody>
-            </table>
+            <!-- ห่อหุ้มตารางด้วย div ที่สามารถเลื่อนแนวนอนได้ -->
+            <div class="overflow-x-auto">
+                <!-- ตารางแสดงข้อมูลการบันทึก -->
+                <table class="min-w-full divide-y divide-slate-200 rounded-lg shadow-sm">
+                    <thead>
+                        <tr class="bg-slate-800 text-slate-100 text-left text-sm">
+                            <th class="py-2 px-4">สถานะ</th>
+                            <th class="py-2 px-4">หมายเหตุ</th>
+                            <th class="py-2 px-4">วันที่</th>
+                            <th class="py-2 px-4">เวลา</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-table" class="text-slate-600 text-sm">
+                        <!-- ข้อมูลการบันทึกจะถูกแสดงในส่วนนี้ -->
+                    </tbody>
+                </table>
+            </div>
+
             <!-- ตัวควบคุมการแบ่งหน้า -->
-            <div id="pagination-controls" class="mt-4"></div>
+            <div id="pagination-controls" class="mt-4 text-sm flex flex-wrap justify-center"></div>
             <!-- แสดงสถานะการโหลด -->
-            <div id="loading" class="text-center text-slate-800 mt-4">กำลังโหลด...</div>
+            <div id="loading" class="text-center text-slate-800 mt-4 text-sm">กำลังโหลด...</div>
         </div>
     </div>
 
@@ -112,7 +116,7 @@
                 buildTable('data-table', filteredData); // สร้างตารางแสดงข้อมูล
             } catch (error) {
                 console.error('Error fetching data:', error); // แสดงข้อผิดพลาดถ้าดึงข้อมูลไม่สำเร็จ
-                document.getElementById('data-table').innerHTML = '<tr><td colspan="4">Error fetching data. Please check the console for more details.</td></tr>';
+                document.getElementById('data-table').innerHTML = '<tr><td colspan="4" class="text-center">เกิดข้อผิดพลาดในการดึงข้อมูล กรุณาตรวจสอบคอนโซลสำหรับรายละเอียดเพิ่มเติม</td></tr>';
             } finally {
                 document.getElementById('loading').style.display = 'none'; // ซ่อนสถานะการโหลด
             }
@@ -156,25 +160,25 @@
                 // เพิ่มสถานะ
                 let td = document.createElement('td');
                 td.textContent = status;
-                td.classList.add('py-2', 'px-4', statusColorClass);
+                td.classList.add('py-2', 'px-4', statusColorClass, 'whitespace-nowrap');
                 tr.appendChild(td);
 
                 // เพิ่มหมายเหตุ
                 td = document.createElement('td');
                 td.textContent = row[5];
-                td.classList.add('py-2', 'px-4');
+                td.classList.add('py-2', 'px-4', 'whitespace-nowrap');
                 tr.appendChild(td);
 
                 // แปลงและเพิ่มวันที่
                 td = document.createElement('td');
                 td.textContent = formatDate(row[6]);
-                td.classList.add('py-2', 'px-4');
+                td.classList.add('py-2', 'px-4', 'whitespace-nowrap');
                 tr.appendChild(td);
 
                 // แปลงและเพิ่มเวลา
                 td = document.createElement('td');
                 td.textContent = formatTime(row[7]);
-                td.classList.add('py-2', 'px-4');
+                td.classList.add('py-2', 'px-4', 'whitespace-nowrap');
                 tr.appendChild(td);
 
                 table.appendChild(tr);
@@ -188,6 +192,9 @@
             const totalPages = Math.ceil(totalItems / itemsPerPage);
             const paginationControls = document.getElementById('pagination-controls');
             paginationControls.innerHTML = '';
+
+            if (totalPages <= 1) return; // ไม่มีการแบ่งหน้า หากมีหน้าจำนวนเดียว
+
             for (let i = 1; i <= totalPages; i++) {
                 const pageButton = document.createElement('button');
                 pageButton.textContent = i;
@@ -195,9 +202,21 @@
                     currentPage = i;
                     fetchData(document.getElementById('userId').value); // ดึงข้อมูลใหม่เมื่อเปลี่ยนหน้า
                 });
-                pageButton.classList.add('py-1', 'px-3', 'm-1', 'border', 'rounded');
+                pageButton.classList.add(
+                    'py-1',
+                    'px-3',
+                    'm-1',
+                    'border',
+                    'rounded',
+                    'text-sm',
+                    'focus:outline-none',
+                    'focus:ring-2',
+                    'focus:ring-blue-500'
+                );
                 if (i === currentPage) {
                     pageButton.classList.add('bg-black', 'text-white'); // ไฮไลท์หน้าปัจจุบัน
+                } else {
+                    pageButton.classList.add('bg-white', 'text-black');
                 }
                 paginationControls.appendChild(pageButton);
             }
