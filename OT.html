@@ -14,54 +14,61 @@
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
 
     <style>
-        #loadingOverlay {  
-            display: none; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0, 0, 0, 0.26); 
-            border-radius:15px; 
-            align-items: center; 
-            justify-content: center; 
-            z-index: 1000; 
+        #loadingOverlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.26);
+            border-radius: 15px;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
         }
 
-        .loading-container { 
-            position: relative;  
+        .loading-container {
+            position: relative;
         }
 
-        @keyframes blink {  
-            0%, 100% { opacity: 1; } 
-            50% { opacity: 0.5; } 
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
-        .blink { 
-            animation: blink 1s infinite; 
+        .blink {
+            animation: blink 1s infinite;
         }
     </style>
 </head>
-<body class="bg-slate-100 h-screen">
-    <div class="max-w-md mx-auto p-4 mt-4">
-        <input type="hidden" id="displayName" name="displayName" value="J'ame  •">
+
+<body class="bg-slate-100 ">
+    <div class="max-w-md mx-auto p-4">
+        <input type="hidden" id="displayName" name="displayName">
         <div class="loading-container">
             <div id="loadingOverlay">
                 <div class="text-center text-white">ค้นหารายชื่อ..</div>
             </div>
             <div class="flex justify-center items-center">
-                <div class="bg-slate-800 rounded-lg shadow-xl p-6">
+                <div class="bg-slate-800 rounded shadow-xl p-6">
                     <div class="flex items-center mb-4">
-                        <img class="mx-auto w-24 h-24 object-cover rounded-lg mr-4" id="columnEData"
-                             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+                        <img class="mx-auto w-24 h-24 object-cover rounded mr-4" id="columnEData"
+                            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
                         <div>
                             <input type="text"
-                                   class="input-field bg-slate-50 text-white text-md font-bold bg-opacity-0 "
-                                   id="columnBData" placeholder="ชื่อ" name="columnBData" readonly>
+                                class="input-field bg-slate-50 text-white text-md font-bold bg-opacity-0 "
+                                id="columnBData" placeholder="ชื่อ" name="columnBData" readonly>
                             <input type="text" class="input-field text-white text-md bg-white bg-opacity-0 "
-                                   id="columnCData" placeholder="รหัสพนักงาน" name="columnCData" readonly>
+                                id="columnCData" placeholder="รหัสพนักงาน" name="columnCData" readonly>
                             <input type="text" class="input-field text-white text-md bg-white bg-opacity-0 "
-                                   id="columnDData" placeholder="ตำแหน่ง" name="columnDData" readonly>
+                                id="columnDData" placeholder="ตำแหน่ง" name="columnDData" readonly>
                         </div>
                     </div>
 
@@ -69,7 +76,7 @@
                         <div class="flex justify-between">
                             <h1 class="font-light text-white text-center text-md">🕔ล่วงเวลา</h1>
                             <input type="text" class="input-field text-md bg-white text-white text-bold bg-opacity-0  "
-                                    id="columnGData"  name="columnGData" readonly>
+                                id="columnGData" name="columnGData" readonly>
                         </div>
                     </div>
                     <input type="hidden" id="userId" name="userId">
@@ -79,47 +86,61 @@
         </div>
         <div class="max-w-md mx-auto py-4">
             <form>
-                <div class="bg-white relative p-10 shadow-xl rounded-lg w-6/6 mx-auto">
+                <div class="bg-white relative p-4 shadow-xl rounded w-6/6 mx-auto">
 
                     <div class="flex justify-between">
+                        <div class="mt-4 flex justify-between mb-5 w-full">
+                            <div class="w-1/2 mr-2">
+                                <label for="otDate" class="block text-sm font-medium text-gray-700 mb-1">วันที่ทำโอที</label>
+                                <input type="date" id="otDate" name="otDate" class="w-full p-2 rounded border">
+                            </div>
+                            <div class="w-1/2 ml-2">
+                                <label for="totalTime" class="block text-sm font-medium text-gray-700 mb-1">เวลาทำโอที</label>
+                                <input type="text" id="totalTime" name="totalTime"
+                                    class="w-full p-2 border rounded bg-gray-100" readonly>
+                            </div>
+                        </div>
+                    </div>
                     <div class="mt-4 flex justify-between mb-5">
-                        <input type="date" id="otDate" name="otDate" class="mr-2 p-2 rounded-lg">
+                        <div class="w-1/2 mr-2">
+                            <label for="startTime" class="block text-sm font-medium text-gray-700 mb-1">เวลาเริ่มต้น</label>
+                            <input type="time" id="startTime" name="startTime" class="w-full p-2 rounded border" value="00:00">
+                        </div>
+                        <div class="w-1/2 ml-2">
+                            <label for="endTime" class="block text-sm font-medium text-gray-700 mb-1">เวลาสิ้นสุด</label>
+                            <input type="time" id="endTime" name="endTime" class="w-full p-2 rounded border" value="00:00">
+                        </div>
                     </div>
 
-                    <div class="mt-4 mb-5">
-                        <input type="text" id="totalTime" name="totalTime" class="w-full p-2 border rounded-lg bg-gray-100" readonly>
-                    </div>
-                 </div>
-                    <div class="mt-4 flex justify-between mb-5">
-                        <input type="time" id="startTime" name="startTime" class="w-1/2 mr-2 p-2 rounded-lg">
-                        <input type="time" id="endTime" name="endTime" class="w-1/2 ml-2 p-2 rounded-lg">
-                    </div>
-             
                     <div class="mt-6 mb-5">
+                        <label for="otTitle" class="block text-sm font-medium text-gray-700 mb-1">หัวข้อเรื่อง</label>
                         <input type="text" id="otTitle" name="otTitle" placeholder="หัวข้อเรื่อง"
-                               class="w-full p-2 border rounded-lg">
+                            class="w-full p-2 border rounded">
                     </div>
                     <div class="mt-4 mb-5">
+                        <label for="otDetail" class="block text-sm font-medium text-gray-700 mb-1">รายละเอียด</label>
                         <textarea id="otDetail" name="otDetail" placeholder="รายละเอียด"
-                                  class="w-full p-2 border rounded-lg"></textarea>
+                            class="w-full p-2 border rounded"></textarea>
                     </div>
-                    <div class="text-center bg-slate-100 rounded-lg my-5 p-4">
-                        <label for="file" class="cursor-pointer justify-between items-center"> อัพโหลดเอกสาร
+                    <div class="text-center bg-slate-100 rounded my-5 p-4">
+                        <label for="file" class="block text-sm font-medium text-gray-700 mb-1">อัพโหลดเอกสาร</label>
+                        <label for="file" class="cursor-pointer flex justify-center items-center">
                             <input type="file" id="file" name="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
-                                   class="hidden">
-                            <div id="fileNameDisplay" class="text-slate-800 text-xs text-center mt-1">ยังไม่ได้เลือกไฟล์</div>
+                                class="hidden">
+                            <div id="fileNameDisplay"
+                                class="text-slate-800 text-xs text-center mt-1">ยังไม่ได้เลือกไฟล์</div>
                         </label>
                         <div class="mx-auto text-slate-800 text-xs text-center mt-1">รูปแบบที่รองรับ jpg jpeg png pdf doc docx</div>
                     </div>
                     <button type="button" id="submitBtn"
-                            class="bg-slate-800 text-center w-full text-white py-4 px-4 rounded-lg hover:bg-slate-600">บันทึกข้อมูล</button>
+                        class="bg-slate-800 text-center w-full text-white py-4 px-4 rounded hover:bg-slate-600">บันทึกข้อมูล</button>
                 </div>
             </form>
         </div>
     </div>
     <script>
-        // ประกาศค่า URL ที่ใช้เชื่อมต่อกับ Web App
-        const WEB_MEMBER_APP_URL = 'https://script.google.com/macros/s/AKfycbyrCxT230UOZAQ93Es4zeYGatWCeA3xSrCUXfcasnpOx3oYbOZCh6oLzmxm9ZCnre34aA/exec'; 
+       // ประกาศค่า URL ที่ใช้เชื่อมต่อกับ Web App
+       const WEB_MEMBER_APP_URL = 'https://script.google.com/macros/s/AKfycbyrCxT230UOZAQ93Es4zeYGatWCeA3xSrCUXfcasnpOx3oYbOZCh6oLzmxm9ZCnre34aA/exec'; 
         
         const WEB_APP_OT_URL = 'https://script.google.com/macros/s/AKfycbwpB8UAufvC2f1Hven9daWi1ms1ypJQ1uHmqGgG8HUbN4n_bQaodaAaFvRZYpRFQxCk/exec'; 
         
@@ -128,6 +149,9 @@
         // เริ่มการทำงานเมื่อโหลดหน้าเว็บ
         window.onload = async function () {
             await initializeLiff();
+            // ตั้งค่าเริ่มต้นของเวลาเป็น 00:00
+            document.getElementById('startTime').value = '00:00';
+            document.getElementById('endTime').value = '00:00';
         };
 
         // ฟังก์ชันสำหรับเริ่มการทำงานของ LIFF
@@ -188,8 +212,6 @@
             document.getElementById('columnDData').value = row[4] || '';
             document.getElementById('columnEData').src = row[5] || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
             document.getElementById('columnGData').value = row[10] || '';
-         
-
         }
 
         // ฟังก์ชันสำหรับแสดง/ซ่อนการโหลดข้อมูล
@@ -222,7 +244,7 @@
         let fileNameDisplay = document.getElementById("fileNameDisplay");
 
         // แสดงชื่อไฟล์ที่เลือก
-        fileInput.addEventListener('change', function() {
+        fileInput.addEventListener('change', function () {
             if (fileInput.files.length > 0) {
                 fileNameDisplay.textContent = fileInput.files[0].name;
             } else {
@@ -291,7 +313,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Validation Error',
-                    text: 'Please fill in all required fields.',
+                    text: 'กรุณากรอกข้อมูลในทุกช่องที่จำเป็น.',
                 });
                 return;
             }
@@ -350,6 +372,9 @@
                         if (result.isConfirmed) {
                             // Reset form
                             document.querySelector('form').reset();
+                            // ตั้งค่าเวลาเริ่มต้นและสิ้นสุดกลับเป็น 00:00
+                            document.getElementById('startTime').value = '00:00';
+                            document.getElementById('endTime').value = '00:00';
                             await sendFlexMessage(obj); // ส่งข้อความ Flex Message หลังจากการส่งข้อมูล
                         }
                     });
@@ -358,7 +383,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'An error occurred while submitting data.',
+                        text: 'เกิดข้อผิดพลาดในการส่งข้อมูล.',
                     });
 
                     console.error(error);
@@ -366,7 +391,7 @@
                     submitBtn.disabled = false;
                 }
             } else {
-                Swal.fire('Submission Canceled', 'Your data has not been submitted.', 'info');
+                Swal.fire('การส่งข้อมูลถูกยกเลิก', 'ข้อมูลของคุณไม่ได้ถูกส่ง.', 'info');
             }
         });
 
@@ -409,12 +434,12 @@
                     }
                 }
             };
-            try { 
+            try {
                 await liff.sendMessages([flexMessage]);
                 liff.closeWindow(); // ปิดหน้าต่าง LIFF
-                console.log("Flex message sent"); 
-            } catch (error) { 
-                console.error("Error sending Flex message:", error); 
+                console.log("Flex message sent");
+            } catch (error) {
+                console.error("Error sending Flex message:", error);
             }
         }
 
@@ -437,4 +462,5 @@
         }
     </script>
 </body>
+
 </html>
