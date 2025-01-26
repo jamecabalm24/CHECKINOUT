@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- นำเข้า LIFF SDK ของ LINE -->
     <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <!-- นำเข้า Heroicons สำหรับไอคอน -->
+    <script src="https://unpkg.com/heroicons@2.0.13/dist/heroicons.min.js"></script>
     <style>
         /* เพิ่ม CSS สำหรับการแสดงสถานะการโหลด */
         #loading {
@@ -22,14 +24,32 @@
 
 <body class="bg-slate-100 max-w-md mx-auto h-screen">
     <div class="container p-4">
-        <div class="bg-white rounded shadow-md p-2">
+        <div class="bg-white rounded shadow-md p-4">
             <input type="hidden" id="userId" name="userId">
             <input type="hidden" id="displayName" name="displayName">
 
             <!-- ส่วนสำหรับแสดงข้อมูลหลัก -->
-            <div id="main-info" class="mb-4 text-sm">
-                <div class="mb-2"><strong>ชื่อ:</strong> <span id="name-info" class="font-medium"></span></div>
-                <div><strong>รหัสพนักงาน:</strong> <span id="employee-id-info" class="font-medium"></span></div>
+            <div id="main-info" class="mb-6 text-sm flex flex-col space-y-2">
+                <div class="flex items-center">
+                    <!-- ไอคอนชื่อ -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5.121 17.804A13.937 13.937 0 0112 15c2.485 0 4.785.684 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <strong>ชื่อ:</strong>
+                    <span id="name-info" class="font-medium ml-1"></span>
+                </div>
+                <div class="flex items-center">
+                    <!-- ไอคอนรหัสพนักงาน -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <strong>รหัสพนักงาน:</strong>
+                    <span id="employee-id-info" class="font-medium ml-1"></span>
+                </div>
             </div>
 
             <!-- ห่อหุ้มตารางด้วย div ที่สามารถเลื่อนแนวนอนได้ -->
@@ -58,7 +78,6 @@
     </div>
 
     <script>
-
         // URL ของ Web App ที่คุณ Deploy ไว้
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyNtfB8remedMfuSKJdvoJIxP24HWO8jVeocDv7uiSiFVEnEJ1n2ttdYvTEeOiEUjJUCg/exec';
         const LIFF_ID = '2006820825-D9kPpxgd'; // Liff ID
@@ -155,12 +174,26 @@
 
                 // เปลี่ยนสีของสถานะตามเงื่อนไข
                 const status = row[4];
-                const statusColorClass = status === 'เข้างาน' ? 'text-green-500' : status === 'ออกงาน' ? 'text-red-500' : 'text-slate-700';
+                let statusColor = 'gray';
+                let dotColor = 'gray';
 
-                // เพิ่มสถานะ
+                if (status === 'เข้างาน') {
+                    statusColor = 'green';
+                    dotColor = 'green';
+                } else if (status === 'ออกงาน') {
+                    statusColor = 'red';
+                    dotColor = 'red';
+                }
+
+                // เพิ่มสถานะด้วย Badge
                 let td = document.createElement('td');
-                td.textContent = status;
-                td.classList.add('py-2', 'px-4', statusColorClass, 'whitespace-nowrap');
+                td.classList.add('py-2', 'px-4', 'whitespace-nowrap');
+                td.innerHTML = `
+                    <span class="flex items-center border border-${statusColor}-500 rounded-full px-2 py-1 text-${statusColor}-500">
+                        <span class="h-2 w-2 bg-${dotColor}-500 rounded-full mr-2"></span>
+                        ${status}
+                    </span>
+                `;
                 tr.appendChild(td);
 
                 // เพิ่มหมายเหตุ
