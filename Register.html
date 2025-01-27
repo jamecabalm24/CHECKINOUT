@@ -88,19 +88,13 @@ async function getUserProfile() {
 async function sendFlexMessage() {
   const flexMessage = {
     type: 'flex',
-    altText: 'ข้อมูลส่วนตัว',
+    altText: 'ข้อมูลลงทะเบียน',
     contents: {
       type: 'bubble',
       styles: {
-        header: {
-          backgroundColor: '#FFFFFF'
-        },
-        body: {
-          backgroundColor: '#FFFFFF'
-        },
-        footer: {
-          backgroundColor: '#FFFFFF'
-        }
+        header: { backgroundColor: '#FFFFFF' },
+        body: { backgroundColor: '#FFFFFF' },
+        footer: { backgroundColor: '#FFFFFF' },
       },
       header: {
         type: 'box',
@@ -108,18 +102,11 @@ async function sendFlexMessage() {
         contents: [
           {
             type: 'text',
-            text: 'Personal info',
+            text: 'ข้อมูลลงทะเบียนสำเร็จ',
             weight: 'bold',
             size: 'md',
             color: '#000000',
             flex: 1
-          },
-          {
-            type: 'text',
-            text: 'Edit',
-            size: 'sm',
-            color: '#007AFF',
-            align: 'end'
           }
         ]
       },
@@ -127,7 +114,7 @@ async function sendFlexMessage() {
         type: 'box',
         layout: 'vertical',
         contents: [
-          // ส่วนของ Name
+          // แถว "ชื่อ-สกุล"
           {
             type: 'box',
             layout: 'horizontal',
@@ -141,7 +128,7 @@ async function sendFlexMessage() {
               },
               {
                 type: 'text',
-                text: 'Name',
+                text: 'ชื่อ-สกุล',
                 size: 'sm',
                 color: '#555555',
                 flex: 3,
@@ -163,43 +150,7 @@ async function sendFlexMessage() {
             type: 'separator',
             margin: 'md'
           },
-          // ส่วนของ Email
-          {
-            type: 'box',
-            layout: 'horizontal',
-            margin: 'md',
-            contents: [
-              {
-                type: 'image',
-                url: 'https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip14.jpg', // ตัวอย่างไอคอน
-                size: 'xs',
-                aspectRatio: '1:1'
-              },
-              {
-                type: 'text',
-                text: 'E-mail',
-                size: 'sm',
-                color: '#555555',
-                flex: 3,
-                gravity: 'center',
-                margin: 'md'
-              },
-              {
-                type: 'text',
-                text: document.getElementById('keynumber2Id').value,
-                size: 'sm',
-                color: '#111111',
-                align: 'end',
-                flex: 5,
-                gravity: 'center'
-              }
-            ]
-          },
-          {
-            type: 'separator',
-            margin: 'md'
-          },
-          // ส่วนของ Phone
+          // แถว "รหัสประจำตัวพนักงาน"
           {
             type: 'box',
             layout: 'horizontal',
@@ -213,7 +164,7 @@ async function sendFlexMessage() {
               },
               {
                 type: 'text',
-                text: 'Phone',
+                text: 'รหัสพนักงาน',
                 size: 'sm',
                 color: '#555555',
                 flex: 3,
@@ -222,8 +173,7 @@ async function sendFlexMessage() {
               },
               {
                 type: 'text',
-                // สมมติถ้าอยากดึงจาก document.getElementById('telId') ก็ใส่ได้
-                text: '+1 201 555-0123',
+                text: document.getElementById('keynumberId').value,
                 size: 'sm',
                 color: '#111111',
                 align: 'end',
@@ -231,56 +181,6 @@ async function sendFlexMessage() {
                 gravity: 'center'
               }
             ]
-          },
-          {
-            type: 'separator',
-            margin: 'md'
-          },
-          // ส่วนของ Address
-          {
-            type: 'box',
-            layout: 'horizontal',
-            margin: 'md',
-            contents: [
-              {
-                type: 'image',
-                url: 'https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip6.jpg', // ตัวอย่างไอคอน
-                size: 'xs',
-                aspectRatio: '1:1'
-              },
-              {
-                type: 'text',
-                text: 'Address',
-                size: 'sm',
-                color: '#555555',
-                flex: 3,
-                gravity: 'center',
-                margin: 'md'
-              },
-              {
-                type: 'text',
-                // สมมติถ้าอยากดึงจาก document.getElementById('addressId') ก็ใส่ได้
-                text: '70 Rainey Street, Apartment 146, Austin TX 78701',
-                size: 'sm',
-                color: '#111111',
-                align: 'end',
-                flex: 5,
-                wrap: true
-              }
-            ]
-          }
-        ]
-      },
-      footer: {
-        type: 'box',
-        layout: 'vertical',
-        contents: [
-          {
-            type: 'text',
-            text: 'Flex Message Example',
-            size: 'xs',
-            color: '#aaaaaa',
-            align: 'center'
           }
         ]
       }
