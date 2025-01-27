@@ -85,132 +85,209 @@ async function getUserProfile() {
     }
 }
 
-// ฟังก์ชันสำหรับส่งข้อความ Flex ไปยังผู้ใช้
 async function sendFlexMessage() {
-    const flexMessage = {
-        type: 'flex',
-        altText: 'ลงทะเบียนเรียบร้อย',
-        contents: {
-            type: 'bubble',
-            styles: {
-                header: {
-                    backgroundColor: '#f0f0f0'
-                },
-                footer: {
-                    backgroundColor: '#f0f0f0'
-                },
-                body: {
-                    backgroundColor: '#ffffff'
-                }
-            },
-            header: {
-                type: 'box',
-                layout: 'vertical',
-                contents: [
-                    {
-                        type: 'text',
-                        text: 'ข้อมูลลงทะเบียนสำเร็จ',
-                        weight: 'bold',
-                        size: 'lg',
-                        color: '#000000',
-                        align: 'center'
-                    }
-                ]
-            },
-            body: {
-                type: 'box',
-                layout: 'vertical',
-                contents: [
-                    {
-                        type: 'box',
-                        layout: 'vertical',
-                        margin: 'lg',
-                        spacing: 'sm',
-                        contents: [
-                            {
-                                type: 'box',
-                                layout: 'horizontal',
-                                contents: [
-                                    {
-                                        type: 'text',
-                                        text: 'ชื่อ-สกุล',
-                                        size: 'sm',
-                                        color: '#555555',
-                                        flex: 1
-                                    },
-                                    {
-                                        type: 'text',
-                                        text: document.getElementById('nameId').value,
-                                        size: 'sm',
-                                        color: '#111111',
-                                        align: 'end',
-                                        flex: 2
-                                    }
-                                ]
-                            },
-                            {
-                                type: 'box',
-                                layout: 'horizontal',
-                                contents: [
-                                    {
-                                        type: 'text',
-                                        text: 'รหัสพนักงาน',
-                                        size: 'sm',
-                                        color: '#555555',
-                                        flex: 1
-                                    },
-                                    {
-                                        type: 'text',
-                                        text: document.getElementById('keynumberId').value,
-                                        size: 'sm',
-                                        color: '#111111',
-                                        align: 'end',
-                                        flex: 2
-                                    }
-                                ]
-                            },
-                            {
-                                type: 'box',
-                                layout: 'horizontal',
-                                contents: [
-                                    {
-                                        type: 'text',
-                                        text: 'อีเมล',
-                                        size: 'sm',
-                                        color: '#555555',
-                                        flex: 1
-                                    },
-                                    {
-                                        type: 'text',
-                                        text: document.getElementById('keynumber2Id').value,
-                                        size: 'sm',
-                                        color: '#111111',
-                                        align: 'end',
-                                        flex: 2
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            footer: {
-                type: 'box',
-                layout: 'vertical',
-                contents: [
-                    {
-                        type: 'text',
-                        text: 'ยินดีต้อนรับ!',
-                        size: 'sm',
-                        color: '#aaaaaa',
-                        align: 'center'
-                    }
-                ]
-            }
+  const flexMessage = {
+    type: 'flex',
+    altText: 'ข้อมูลส่วนตัว',
+    contents: {
+      type: 'bubble',
+      styles: {
+        header: {
+          backgroundColor: '#FFFFFF'
+        },
+        body: {
+          backgroundColor: '#FFFFFF'
+        },
+        footer: {
+          backgroundColor: '#FFFFFF'
         }
-    };
+      },
+      header: {
+        type: 'box',
+        layout: 'horizontal',
+        contents: [
+          {
+            type: 'text',
+            text: 'Personal info',
+            weight: 'bold',
+            size: 'md',
+            color: '#000000',
+            flex: 1
+          },
+          {
+            type: 'text',
+            text: 'Edit',
+            size: 'sm',
+            color: '#007AFF',
+            align: 'end'
+          }
+        ]
+      },
+      body: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          // ส่วนของ Name
+          {
+            type: 'box',
+            layout: 'horizontal',
+            margin: 'md',
+            contents: [
+              {
+                type: 'image',
+                url: 'https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip4.jpg', // ตัวอย่างไอคอน
+                size: 'xs',
+                aspectRatio: '1:1'
+              },
+              {
+                type: 'text',
+                text: 'Name',
+                size: 'sm',
+                color: '#555555',
+                flex: 3,
+                gravity: 'center',
+                margin: 'md'
+              },
+              {
+                type: 'text',
+                text: document.getElementById('nameId').value,
+                size: 'sm',
+                color: '#111111',
+                align: 'end',
+                flex: 5,
+                gravity: 'center'
+              }
+            ]
+          },
+          {
+            type: 'separator',
+            margin: 'md'
+          },
+          // ส่วนของ Email
+          {
+            type: 'box',
+            layout: 'horizontal',
+            margin: 'md',
+            contents: [
+              {
+                type: 'image',
+                url: 'https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip14.jpg', // ตัวอย่างไอคอน
+                size: 'xs',
+                aspectRatio: '1:1'
+              },
+              {
+                type: 'text',
+                text: 'E-mail',
+                size: 'sm',
+                color: '#555555',
+                flex: 3,
+                gravity: 'center',
+                margin: 'md'
+              },
+              {
+                type: 'text',
+                text: document.getElementById('keynumber2Id').value,
+                size: 'sm',
+                color: '#111111',
+                align: 'end',
+                flex: 5,
+                gravity: 'center'
+              }
+            ]
+          },
+          {
+            type: 'separator',
+            margin: 'md'
+          },
+          // ส่วนของ Phone
+          {
+            type: 'box',
+            layout: 'horizontal',
+            margin: 'md',
+            contents: [
+              {
+                type: 'image',
+                url: 'https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip5.jpg', // ตัวอย่างไอคอน
+                size: 'xs',
+                aspectRatio: '1:1'
+              },
+              {
+                type: 'text',
+                text: 'Phone',
+                size: 'sm',
+                color: '#555555',
+                flex: 3,
+                gravity: 'center',
+                margin: 'md'
+              },
+              {
+                type: 'text',
+                // สมมติถ้าอยากดึงจาก document.getElementById('telId') ก็ใส่ได้
+                text: '+1 201 555-0123',
+                size: 'sm',
+                color: '#111111',
+                align: 'end',
+                flex: 5,
+                gravity: 'center'
+              }
+            ]
+          },
+          {
+            type: 'separator',
+            margin: 'md'
+          },
+          // ส่วนของ Address
+          {
+            type: 'box',
+            layout: 'horizontal',
+            margin: 'md',
+            contents: [
+              {
+                type: 'image',
+                url: 'https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip6.jpg', // ตัวอย่างไอคอน
+                size: 'xs',
+                aspectRatio: '1:1'
+              },
+              {
+                type: 'text',
+                text: 'Address',
+                size: 'sm',
+                color: '#555555',
+                flex: 3,
+                gravity: 'center',
+                margin: 'md'
+              },
+              {
+                type: 'text',
+                // สมมติถ้าอยากดึงจาก document.getElementById('addressId') ก็ใส่ได้
+                text: '70 Rainey Street, Apartment 146, Austin TX 78701',
+                size: 'sm',
+                color: '#111111',
+                align: 'end',
+                flex: 5,
+                wrap: true
+              }
+            ]
+          }
+        ]
+      },
+      footer: {
+        type: 'box',
+        layout: 'vertical',
+        contents: [
+          {
+            type: 'text',
+            text: 'Flex Message Example',
+            size: 'xs',
+            color: '#aaaaaa',
+            align: 'center'
+          }
+        ]
+      }
+    }
+  };
 
-    await liff.sendMessages([flexMessage]); // ส่งข้อความ Flex ผ่าน LIFF
+  await liff.sendMessages([flexMessage]);
 }
 
 // กำหนดตัวแปรสำหรับใช้ในฟังก์ชันต่างๆ
